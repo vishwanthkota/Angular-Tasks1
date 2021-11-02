@@ -1,0 +1,23 @@
+<p>child1 works!</p>
+<div class="card">
+
+    <div class="row">
+        <div class="col-2">
+            <p>Sort Products By :</p>
+    
+        </div>
+        <div class="col-4">
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" [(ngModel)]="selectedValue" (click)="onClicked(selectedValue)" >
+                <option value="Name">Product Name</option>
+                <option value="Units">Units</option>
+                <option value="Price">Price</option>
+              </select>
+        </div>
+    </div>
+</div>
+
+
+<!-- <p [directiveStyle]="Green">India is my Country</p> -->
+<p>India is my Country</p>
+<p>India is my Country</p>
+
