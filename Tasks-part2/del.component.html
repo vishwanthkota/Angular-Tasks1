@@ -1,0 +1,287 @@
+<!-- <img src="assets/images/images.png" style="margin-right: 20px; width: 20%;"> -->
+<div class="container " style="background-color: rgb(232, 232, 247); width: 100%; padding-top: 100px;">
+
+    <h3>Data loading using JavaScript</h3>
+    <button type="button" (click)="showData()" class="btn btn-dark">Get Products</button>
+    <div class="card">
+
+
+        <div class="card-body">
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Units in stock</th>
+                    </tr>
+                </thead>
+                <ng-container *ngIf="showProducts">
+                    <tbody>
+                        <tr *ngFor="let product of products,let i=index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{product.pname}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.qty}}</td>
+                            <td><button type="button" (click)="select(product)" class="btn btn-dark">Update
+                                    Product</button></td>
+                            <td><a href="javascript:void(0)" (click)="removeProduct(product.pname)" ><img src="assets/images/download.png" style="margin-right: 20px; width: 10%;"></a>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </ng-container>
+
+            </table>
+            <button type="button" (click)="showBox('add')" class="btn btn-dark">Add Product</button>
+            <!-- <button type="button" (click)="showBox('udate')" class="btn btn-dark" style="float: right;">Update
+                Product</button> -->
+        </div>
+
+
+    </div>
+
+    <ng-container *ngIf="add">
+    <form>
+        <div class="row" style="padding-bottom: 10px;">
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                <input type="text" class="form-control" name="pname" id="pname" [(ngModel)]="delproducts1.pname">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Price</label>
+                <input type="email" class="form-control" name="price" id="price" [(ngModel)]="delproducts1.price">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Units</label>
+                <input type="email" class="form-control" name="qty" id="qty" [(ngModel)]="delproducts1.qty">
+            </div>
+        </div>
+
+        <button class="btn btn-primary" (click)="addProduct(delproducts1)">Add</button>
+    </form>
+    </ng-container>
+    <ng-container *ngIf="remove">
+    <form>
+        <div class="row" style="padding-bottom: 10px;">
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                <input type="text" class="form-control" name="pname" id="pname" [(ngModel)]="delproducts.pname">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Price</label>
+                <input type="email" class="form-control" name="price" id="price" [(ngModel)]="delproducts.price">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Units</label>
+                <input type="email" class="form-control" name="qty" id="qty" [(ngModel)]="delproducts.qty">
+            </div>
+        </div>
+
+        <!-- <button class="btn btn-primary" (click)="update(delproducts1)">Update</button> -->
+    </form>
+    </ng-container>
+    <ng-container *ngIf="showError">
+        <p style="color: red;">No Match Found</p>
+    </ng-container>
+
+
+    <br>
+    <br>
+    <h2>Using  Service concept</h2>
+
+    <div class="card">
+
+
+        <div class="card-body">
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Units in stock</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr *ngFor="let product of proServiceDta,let i=index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{product.pname}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.qty}}</td>
+                            <td><button type="button" (click)="selectService(product)" class="btn btn-dark">Update
+                                    Product</button></td>
+                            <td><a href="javascript:void(0)" (click)="removeProductService(product.pname)" ><img src="assets/images/download.png" style="margin-right: 20px; width: 10%;"></a>
+                                </td>
+                        </tr>
+    
+                    </tbody>
+    
+            </table>
+            <button type="button" (click)="showBox('add')" class="btn btn-dark">Add Product</button>
+            <!-- <button type="button" (click)="showBox('udate')" class="btn btn-dark" style="float: right;">Update
+                Product</button> -->
+        </div>
+    
+    
+    </div>
+    
+    <form>
+        <div class="row" style="padding-bottom: 10px;">
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                <input type="text" class="form-control" name="pname" id="pname" [(ngModel)]="delpro.pname">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Price</label>
+                <input type="email" class="form-control" name="price" id="price" [(ngModel)]="delpro.price">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Units</label>
+                <input type="email" class="form-control" name="qty" id="qty" [(ngModel)]="delpro.qty">
+            </div>
+        </div>
+    
+        <button class="btn btn-primary" (click)="addProductService(delpro)">Add</button>
+    </form>
+    <form>
+        <div class="row" style="padding-bottom: 10px;">
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                <input type="text" class="form-control" name="pname" id="pname" [(ngModel)]="delpro1.pname">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Price</label>
+                <input type="email" class="form-control" name="price" id="price" [(ngModel)]="delpro1.price">
+            </div>
+            <div class="col-sm-4">
+                <label for="exampleInputEmail1" class="form-label">Units</label>
+                <input type="email" class="form-control" name="qty" id="qty" [(ngModel)]="delpro1.qty">
+            </div>
+        </div>
+    
+    </form>
+
+
+
+</div>
+
+<br>
+
+
+
+
+
+<!-- <button type="button" (click)="showData()" class="btn btn-dark">Get Products</button> -->
+
+
+
+
+
+<!-- <span *ngFor="let product of delta">
+    {{product}},
+</span> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+<div class="container " style="background-color: rgb(232, 232, 247); width: 100%; padding-top: 100px;">
+
+    <h3>Data loading using JavaScript</h3>
+    <button type="button" (click)="showData()" class="btn btn-dark">Get Products</button>
+    <div class="card">
+
+
+        <div class="card-body">
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Units in stock</th>
+                    </tr>
+                </thead>
+                <ng-container *ngIf="showProducts">
+                    <tbody>
+                        <tr *ngFor="let product of products,let i=index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{product.pname}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.qty}}</td>
+                            <td><button type="button" (click)="showBox('add')" class="btn btn-dark">Select Product</button></td>
+                            <td><button type="button" (click)="removeProduct(product.pname)" class="btn btn-dark">Add Product</button></td>
+                        </tr>
+
+                    </tbody>
+                </ng-container>
+
+            </table>
+            <button type="button" (click)="select('add')" class="btn btn-dark">Add Product</button>
+            <button type="button" (click)="removeProduct(product.pname)" class="btn btn-dark" style="float: right;">Remove
+                Product</button>
+        </div>
+
+
+    </div>
+
+    <ng-container *ngIf="add">
+        <form>
+            <div class="row" style="padding-bottom: 10px;">
+                <div class="col-sm-4">
+                    <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" name="pname" id="pname" [(ngModel)]="delproducts.pname">
+                </div>
+                <div class="col-sm-4">
+                    <label for="exampleInputEmail1" class="form-label">Price</label>
+                    <input type="email" class="form-control" name="price" id="price" [(ngModel)]="delproducts.price">
+                </div>
+                <div class="col-sm-4">
+                    <label for="exampleInputEmail1" class="form-label">Units</label>
+                    <input type="email" class="form-control" name="qty" id="qty" [(ngModel)]="delproducts.qty">
+                </div>
+            </div>
+
+            <button class="btn btn-primary" (click)="addProduct(delproducts)">Add</button>
+        </form>
+    </ng-container>
+    <ng-container *ngIf="remove">
+        <form>
+            <div class="row" style="padding-bottom: 10px;">
+                <div class="col-sm-4">
+                    <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                    <input type="email" class="form-control" id="pname" name="pname" [(ngModel)]="pname">
+                </div>
+            </div>
+
+            <button class="btn btn-primary" (click)="removeProduct(pname)">Remove</button>
+        </form>
+    </ng-container>
+    <ng-container *ngIf="showError">
+        <p style="color: red;">No Match Found</p>
+    </ng-container>
+
+
+
+
+</div>
+
+
+
+<span *ngFor="let product of delta">
+    {{product}},
+</span>
+<img src="assets/images/images.png" style="margin-right: 20px; width: 20%;"> -->
