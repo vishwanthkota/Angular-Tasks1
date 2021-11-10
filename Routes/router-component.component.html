@@ -1,0 +1,47 @@
+
+<h2>Routing Data</h2>
+<!-- 
+{{empData|json}}
+<br>
+<br>
+
+Employee DeptNo : {{empData.deptno}}
+<br>
+Employee ID :   {{empData.eid}}
+<br>
+
+Employee  Name:   {{empData.name}}
+<br>
+
+Employee Dept: {{empData.dept}}
+<br>
+
+Employee Salary: {{empData.sal}} -->
+
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Employee Dept</th>
+            <th scope="col">EID</th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Employee Dept</th>
+            <th scope="col">Employee Salary</th>
+
+
+
+
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+                <td>{{empData.deptno}}</td>
+                <td>{{empData.eid}}</td>
+                <td>{{empData.name}}</td>
+                <td>{{empData.dept}}</td>
+                <td>{{empData.sal}}</td>
+            </tr>
+
+        </tbody>
+
+</table>
