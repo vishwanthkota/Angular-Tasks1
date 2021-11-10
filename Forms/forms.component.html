@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <h2>Template Driven Forms</h2>
+    <br>
+    <br>
+    <br>
+    <form #form1="ngForm" (submit)="submitForm()">
+        <div class="form-group">
+            <label for="exampleInputEmail1">First Name</label>
+            <input type="text" class="form-control" [(ngModel)]="firstName" #txtFname="ngModel" name="txtFname"
+                required="true" />
+
+            <span *ngIf="txtFname.invalid &&  txtFname.dirty" style="color: red;">First Name is required</span>
+
+        </div>  
+        <div class="form-group">
+            <label for="exampleInputEmail1">Last Name</label>
+            <input type="text" class="form-control" [(ngModel)]="lastName" #txtLname="ngModel" name="txtFname"
+                required="true" />
+
+            <span style="color: red;" *ngIf="txtLname.invalid &&  txtLname.dirty">Last Name is required</span>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" [(ngModel)]="email" name="txtEmail" #txtEmail="ngModel"
+                email="true">
+
+            <span *ngIf="txtEmail.invalid && txtEmail.dirty" style="color: red;">
+                Enter valid email address
+            </span>
+        </div>
+
+
+        <!-- <input type="submit" [disabled]="form1.invalid"  value="Register" /> -->
+        <button type="submit" [disabled]="form1.invalid" value="Register" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <h2>Reactive Forms</h2>
+    <form [formGroup]="detailsForm" (submit)="submitForm()">
+        <div class="form-group">
+            <label for="exampleInputEmail1">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" formControlName="firstname" />
+
+            <div *ngIf="!detailsForm.controls.firstname?.valid && (detailsForm.controls.firstname?.dirty
+    ||detailsForm.controls.firstname?.touched)" style="color: red;">
+                First Name is required
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" formControlName="lastname" />
+
+
+            <div *ngIf="!detailsForm.controls.lastname?.valid && (detailsForm.controls.lastname?.dirty
+            ||detailsForm.controls.lastname?.touched)" style="color: red;">
+                Last Name is required
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" formControlName="email">
+
+
+            <div *ngIf="!detailsForm.controls.email?.valid && (detailsForm.controls.email?.dirty || detailsForm.controls.email?.touched)" style="color: red;">
+               
+                  Please Enter a valid email Id
+                
+                <!-- <div [hidden]="detailsForm.controls.email?.valid">
+                  invalid email id
+                </div> -->
+              </div>
+           
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="tandc">
+            <label class="form-check-label"  >Terms and Conditions</label>
+            <div *ngIf="!detailsForm.controls.tandc?.valid && (detailsForm.controls.tandc?.dirty || detailsForm.controls.tandc?.touched)" style="color: red;">
+                Accept
+            </div>
+        </div>
+
+
+        <!-- <input type="submit" [disabled]="form1.invalid"  value="Register" /> -->
+        <button type="submit" [disabled]="detailsForm.invalid" value="Register" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<ng-container *ngIf="showData">
+{{data | json    }}
+</ng-container>
+
+
+<br>
+<br>
+<br>
